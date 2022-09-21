@@ -47,6 +47,7 @@ class Cuti extends Model
         $datas = DB::table('cutis')
             ->where('user_id', '=', $user_id)
             ->where('status', '=', 1)
+            ->orWhere('status', '=', 3)
             ->sum('total_hari');
 
         return $datas;
