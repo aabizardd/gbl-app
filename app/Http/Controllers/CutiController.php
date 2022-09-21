@@ -6,6 +6,7 @@ use App\Models\Bagian;
 use App\Models\Cuti;
 use App\Models\Jabatan;
 use App\Models\User;
+use DateTime;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -37,9 +38,10 @@ class CutiController extends Controller
             $data_cuti = Cuti::get_cuti_all();
         }
 
-        $count_cuti = Cuti::where('user_id', '=', $data_auth->id)->where('status', '=', 1)->count();
+        // $count_cuti = Cuti::where('user_id', '=', $data_auth->id)->where('status', '=', 1)->count();
+        $count_cuti = Cuti::sum_cuti($data_auth->id);
 
-        // dd($data_cuti);
+        // dd($count_cuti);
 
         $data = [
             'bagians' => $data_bagian,
@@ -79,6 +81,7 @@ class CutiController extends Controller
     public function store(Request $request)
     {
         //
+
         $this->validate($request, [
             'user_id' => 'required',
             'dari_tanggal' => 'required',
@@ -88,8 +91,16 @@ class CutiController extends Controller
             'keterangan' => 'required',
         ]);
 
-        $data = $request->all();
+        $tgl1 = new DateTime($request['dari_tanggal']);
+        $tgl2 = new DateTime($request['sampai_tanggal']);
+        $total_hari = $tgl2->diff($tgl1);
 
+        $total_hari = $total_hari->d + 1;
+
+        $data = $request->all();
+        $data['total_hari'] = $total_hari;
+
+        // array_push($data, );
         // dd($data);
 
         Cuti::create($data);

@@ -14,6 +14,7 @@ class Cuti extends Model
         'user_id',
         'dari_tanggal',
         'sampai_tanggal',
+        'total_hari',
         'bagian_id',
         'jabatan_id',
         'keterangan',
@@ -37,6 +38,16 @@ class Cuti extends Model
             ->join('users', 'users.id', '=', 'cutis.user_id')
             ->select('cutis.*', 'users.nik', 'users.nama_lengkap')
             ->get();
+
+        return $datas;
+    }
+
+    public static function sum_cuti($user_id)
+    {
+        $datas = DB::table('cutis')
+            ->where('user_id', '=', $user_id)
+            ->where('status', '=', 1)
+            ->sum('total_hari');
 
         return $datas;
     }

@@ -24,6 +24,7 @@ class CreateCutisTable extends Migration
             $table->timestamp('tanggal')->useCurrent();
             $table->date('dari_tanggal');
             $table->date('sampai_tanggal');
+            $table->integer('total_hari')->nullable();
 
             $table->unsignedBigInteger('bagian_id')->nullable();
             $table->foreign('bagian_id')->references('id')->on('bagians')->constrained()

@@ -45,6 +45,7 @@
                                                     <th>Tanggal</th>
                                                     <th>Dari Tanggal</th>
                                                     <th>Sampai Tanggal</th>
+                                                    <th>Total Hari</th>
                                                     <th>Keterangan</th>
                                                     <th>Status</th>
                                                     @if (Auth::user()->level == 2 || Auth::user()->level == 4)
@@ -64,6 +65,7 @@
                                                         <td>{{ $cuti->tanggal }}</td>
                                                         <td>{{ $cuti->dari_tanggal }}</td>
                                                         <td>{{ $cuti->sampai_tanggal }}</td>
+                                                        <td>{{ $cuti->total_hari }} Hari</td>
                                                         <td>{{ $cuti->keterangan }}</td>
                                                         <td>
                                                             @if ($cuti->status == 0)

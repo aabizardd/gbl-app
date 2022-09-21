@@ -25,9 +25,9 @@ class Karyawan extends Model
     {
 
         $datas = DB::table('karyawans')
-            ->join('users', 'users.id', '=', 'karyawans.user_id')
-            ->join('bagians', 'bagians.id', '=', 'karyawans.bagian_id')
-            ->join('jabatans', 'jabatans.id', '=', 'karyawans.jabatan_id')
+            ->leftJoin('users', 'users.id', '=', 'karyawans.user_id')
+            ->leftJoin('bagians', 'bagians.id', '=', 'karyawans.bagian_id')
+            ->leftJoin('jabatans', 'jabatans.id', '=', 'karyawans.jabatan_id')
         // ->select('cutis.*', 'users.nik', 'users.nama_lengkap')
             ->where('user_id', '=', $user_id)
             ->first();
