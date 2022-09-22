@@ -32,7 +32,7 @@ class HomeController extends Controller
 
         if (Auth::user()->level == 1) {
 
-            $count_cuti = Cuti::where('user_id', '=', $data_auth->id)->where('status', '=', 1)->count();
+            $count_cuti = Cuti::sum_cuti($data_auth->id);
             $data_cuti = Cuti::where('user_id', '=', $data_auth->id)->count();
 
             $data = [

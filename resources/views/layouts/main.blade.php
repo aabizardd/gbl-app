@@ -57,6 +57,7 @@
             </ul>
 
         </nav>
+
         <!-- /.navbar -->
         @if (Auth::user()->level == 1)
             @include('karyawan.sidebar')

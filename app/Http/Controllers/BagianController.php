@@ -23,6 +23,8 @@ class BagianController extends Controller
 
         $bagians = Bagian::all();
 
+        // SELECT * FROM bagians
+
         $data = [
             'bagians' => $bagians,
         ];
@@ -54,6 +56,8 @@ class BagianController extends Controller
         ]);
 
         $data = $request->all();
+
+        // $kode = $request['kode'];
 
         // dd($data);
 
